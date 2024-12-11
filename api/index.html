@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Product Display with Download</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .product-card img {
+      max-height: 200px;
+      object-fit: cover;
+    }
+    .product-card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Product Showcase</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Our Products</h1>
+    <div class="row" id="products"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    &copy; 2024 Product Showcase. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Example JSON data
+    const jsonData = [
+      {
+        "id": 145,
+        "title": "Gafas",
+        "price": 2000,
+        "description": "Lentes firmes y duraderos",
+        "images": ["https://i.pinimg.com/236x/c8/25/a5/c825a5e00b92cff5ad47a2281785d0ac.jpg"],
+        "category": {
+          "name": "Comida"
+        }
+      },
+      {
+        "id": 146,
+        "title": "Mueble",
+        "price": 44444,
+        "description": "Un mueble grande",
+        "images": ["https://i.pinimg.com/474x/46/fb/ac/46fbac8e83b7048dcf696f505cb7321f.jpg"],
+        "category": {
+          "name": "Testing Category"
+        }
+      },
+      {
+        "id": 147,
+        "title": "lapiz",
+        "price": 22,
+        "description": "color negro",
+        "images": ["https://i.pinimg.com/236x/1c/6d/bd/1c6dbdc2dbae65d215e005d91b91d79b.jpg"],
+        "category": {
+          "name": "Utilez"
+        }
+      }
+    ];
+  
+    // Log the full data array to the console
+    console.log('Product Data:', jsonData);
+  
+    // Select the container
+    const productsContainer = document.getElementById('products');
+  
+    // Loop through the data and display it
+    jsonData.forEach(product => {
+      // Log each product to the console
+      console.log('Product:', product);
+  
+      const productCard = document.createElement('div');
+      productCard.classList.add('col-md-4', 'product-card');
+  
+      productCard.innerHTML = `
+        <div class="card shadow-sm">
+          <a href="${product.images[0]}" download="${product.title}.jpg">
+            <img src="${product.images[0]}" class="card-img-top" alt="${product.title}">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">${product.title}</h5>
+            <p class="card-text">${product.description}</p>
+            <p class="text-primary"><strong>Price:</strong> $${product.price}</p>
+            <p class="text-muted"><strong>Category:</strong> ${product.category.name}</p>
+          </div>
+        </div>
+      `;
+  
+      productsContainer.appendChild(productCard);
+    });
+  </script>
+  
+</body>
+</html>
